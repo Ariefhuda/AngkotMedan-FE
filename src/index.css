@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --color-primary: #7c5800;
+  --color-primary-light: #fdb813;
+  --color-on-primary: #ffffff;
+
+  --color-secondary: #0453cd;
+  --color-secondary-light: #356ee7;
+  --color-on-secondary: #ffffff;
+
+  --color-surface: #f9f9ff;
+  --color-surface-dim: #cadaff;
+  --color-surface-container: #e8edff;
+  --color-surface-container-low: #f1f3ff;
+  --color-surface-container-high: #e0e8ff;
+
+  --color-on-surface: #041b3c;
+  --color-on-surface-variant: #504533;
+
+  --color-navy: #0a1628;
+  --color-navy-light: #1d3052;
+
+  --color-error: #ba1a1a;
+
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-body);
+  background-color: #f4f6f8;
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input {
+  font: inherit;
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid rgba(4, 83, 205, 0.25);
+  outline-offset: 2px;
+}
+
+.page-gutter {
+  padding-inline: 20px;
+}
+
+.content-width {
+  width: min(100%, 720px);
+}
+
+.route-panel {
+  border: 1px solid #dfe5ec;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 50px rgba(4, 27, 60, 0.08);
+}
+
+.hero-title {
+  max-width: 11ch;
+  font-size: clamp(3.35rem, 7vw, 7rem);
+  text-wrap: balance;
+}
+
+.hero-title + p {
+  text-wrap: pretty;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (min-width: 900px) {
+  .search-heading {
+    max-width: 720px;
+  }
+
+  main > section:not(:first-child) > .max-w-6xl:not(.content-width) {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.85fr) minmax(520px, 1.15fr);
+    column-gap: 72px;
+    align-items: start;
+  }
+
+  main > section:not(:first-child) > .max-w-6xl:not(.content-width) > .route-panel {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  main > section:not(:first-child) > .max-w-6xl:not(.content-width) > .route-panel + button,
+  main > section:not(:first-child) > .max-w-6xl:not(.content-width) > .route-panel ~ .mt-14 {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-gutter {
+    padding-inline: 32px;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-title {
+    max-width: 9ch;
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background-color: #fdb813;
+  color: #041b3c;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cadaff;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8b8e8;
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(18px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { transform: translateY(8px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e8edff 25%, #f1f3ff 50%, #e8edff 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
