@@ -1,5 +1,7 @@
 # AngkotMedan-FE
 
+> Repo ini sudah digabung ke [AngkotMedan](https://github.com/Ariefhuda/AngkotMedan), yang sekarang berisi halaman web dan API dalam satu server. Pengembangan dilanjutkan di sana; repo ini disimpan sebagai arsip.
+
 Tampilan web pencari rute angkot Kota Medan, dibuat dengan React. Pengguna memilih halte asal dan tujuan, lalu melihat angkot yang harus dinaiki, urutan haltenya, dan tempat pindah kalau perlu.
 
 Data dan pencarian rutenya dikerjakan oleh [AngkotMedan-BE](https://github.com/Ariefhuda/AngkotMedan-BE), jadi backend itu harus berjalan lebih dulu. Versi yang berjalan tanpa backend ada di [AngkotMedan](https://github.com/Ariefhuda/AngkotMedan).
