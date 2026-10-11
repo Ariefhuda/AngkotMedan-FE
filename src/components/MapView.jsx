@@ -1,14 +1,18 @@
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MEDAN_CENTER = [3.5952, 98.6722];
 
-function FlyToLocation({ position }) {
+// Atur tampilan peta supaya titik asal dan tujuan sama-sama terlihat.
+function FitToRoute({ fromLoc, toLoc }) {
   const map = useMap();
-  if (position) {
-    map.flyTo(position, 15, { duration: 1.5 });
-  }
+  useEffect(() => {
+    const points = [fromLoc, toLoc].filter(Boolean).map((loc) => [loc.lat, loc.lng]);
+    if (points.length === 2) map.fitBounds(points, { padding: [48, 48], maxZoom: 15 });
+    else if (points.length === 1) map.setView(points[0], 15);
+  }, [map, fromLoc, toLoc]);
   return null;
 }
 
@@ -36,11 +40,12 @@ export default function MapView({ fromLoc, toLoc }) {
         zoom={14}
         className="h-full w-full"
         zoomControl={false}
-        attributionControl={false}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
+        <FitToRoute fromLoc={fromLoc} toLoc={toLoc} />
         {fromLoc && (
           <Marker position={[fromLoc.lat, fromLoc.lng]} icon={fromIcon}>
             <Popup>

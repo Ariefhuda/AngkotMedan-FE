@@ -133,11 +133,13 @@ function DirectRoute({ route }) {
         </p>
       </div>
 
-      <StopTimeline
+      <TimelineLeg
+        number={1}
+        color={color}
+        label={`Angkot ${route.route.number}`}
         boardStop={route.boardStop}
         alightStop={route.alightStop}
         intermediateStops={route.intermediateStops}
-        color={color}
       />
     </div>
   );
